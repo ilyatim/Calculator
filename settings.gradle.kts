@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         google()
@@ -15,4 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Calculator"
 include(":app")
- 
+includeBuild("buildLogic")
