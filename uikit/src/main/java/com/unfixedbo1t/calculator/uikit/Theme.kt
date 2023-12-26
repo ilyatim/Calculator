@@ -1,4 +1,4 @@
-package com.unfixedbo1t.calculator.ui.theme
+package com.unfixedbo1t.calculator.uikit
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.unfixedbo1t.calculator.ui.theme
+package com.unfixedbo1t.calculator.uikit
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

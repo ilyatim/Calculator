@@ -16,8 +16,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Calculator"
 
 include(":app")
 include(":uikit")
+include(":feature:simpleCalculator")
 includeBuild("buildLogic")
