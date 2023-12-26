@@ -20,6 +20,12 @@ gradlePlugin {
         version = "1.0"
         implementationClass = "com.unfixedbo1t.calculator.buildlogic.plugins.LibraryPlugin"
     }
+
+    plugins.register("androidLibraryComposePlugin") {
+        id = "com.unfixedbo1t.android.calculator.library.compose"
+        version = "1.0"
+        implementationClass = "com.unfixedbo1t.calculator.buildlogic.plugins.ComposeLibraryPlugin"
+    }
     plugins.register("androidDiPlugin") {
         id = "com.unfixedbo1t.android.calculator.di"
         version = "1.0"
