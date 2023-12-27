@@ -5,10 +5,13 @@ import com.unfixedbo1t.calculator.simplecalculator.data.ActionButtonType
 
 internal class ButtonsProvider : PreviewParameterProvider<ActionButtonType> {
     override val values: Sequence<ActionButtonType> = sequenceOf(
-        ActionButtonType.Equal,
+        ActionButtonType.Calculate,
         ActionButtonType.Plus,
         ActionButtonType.Minus,
         ActionButtonType.Multiply,
-        ActionButtonType.Divide
+        ActionButtonType.Divide,
+        ActionButtonType.Eight,
+        ActionButtonType.Nine,
+        ActionButtonType.Zero,
     )
 }
