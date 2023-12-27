@@ -10,15 +10,15 @@ import androidx.compose.runtime.Composable
 fun getColorScheme(): ColorScheme = if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
 
 internal val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Dark.PrimaryGray,
+    onPrimary = Dark.ButtonOnContainer,
+    background = Dark.PrimaryDarkGray
 )
 
 internal val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Light.PrimaryGray,
+    onPrimary = Light.ButtonOnContainer,
+    background = Light.PrimaryLightGray
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

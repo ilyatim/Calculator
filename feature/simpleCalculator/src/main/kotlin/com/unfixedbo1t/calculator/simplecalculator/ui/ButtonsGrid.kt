@@ -1,12 +1,15 @@
 package com.unfixedbo1t.calculator.simplecalculator.ui
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.unfixedbo1t.calculator.simplecalculator.data.ActionButtonState
 import com.unfixedbo1t.calculator.simplecalculator.data.ActionButtonType
+import com.unfixedbo1t.calculator.uikit.theme.CalculatorTheme
 
 @Composable
 fun ButtonsGrid(
@@ -111,13 +114,22 @@ private fun DigitButtonsGrid(
 }
 
 @Composable
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 internal fun PreviewButtonsGridVertical() {
-    ButtonsGrid(onActionClick = {})
+    CalculatorTheme {
+        Surface {
+            ButtonsGrid(onActionClick = {})
+        }
+    }
 }
 
 @Composable
 @Preview
 internal fun PreviewButtonsGridHorizontal() {
-    ButtonsGrid(isVerticalOrientation = false, onActionClick = {})
+    CalculatorTheme {
+        Surface {
+            ButtonsGrid(isVerticalOrientation = false, onActionClick = {})
+        }
+    }
 }
