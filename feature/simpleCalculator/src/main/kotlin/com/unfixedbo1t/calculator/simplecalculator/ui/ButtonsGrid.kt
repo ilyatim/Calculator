@@ -1,12 +1,19 @@
 package com.unfixedbo1t.calculator.simplecalculator.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.unfixedbo1t.calculator.simplecalculator.data.ActionButtonState
 import com.unfixedbo1t.calculator.simplecalculator.data.ActionButtonType
 import com.unfixedbo1t.calculator.uikit.theme.CalculatorTheme
@@ -18,10 +25,8 @@ fun ButtonsGrid(
     onActionClick: (ActionButtonState) -> Unit,
 ) {
     val buttons: Array<ActionButtonType>
-    val rowCount: Int
     val columnCount: Int
     if (isVerticalOrientation) {
-        rowCount = 5
         columnCount = 4
         buttons = arrayOf(
             // First row
@@ -51,7 +56,6 @@ fun ButtonsGrid(
             ActionButtonType.Calculate
         )
     } else {
-        rowCount = 4
         columnCount = 5
         buttons = arrayOf(
             // First row
@@ -84,7 +88,6 @@ fun ButtonsGrid(
         modifier = modifier,
         buttons = buttons,
         columns = columnCount,
-        rows = rowCount,
         onActionClick = onActionClick
     )
 }
@@ -94,21 +97,21 @@ private fun DigitButtonsGrid(
     modifier: Modifier = Modifier,
     buttons: Array<ActionButtonType>,
     columns: Int,
-    rows: Int,
     onActionClick: (ActionButtonState) -> Unit
 ) {
-    Column(modifier = modifier) {
-        for (rowId in 0 until rows) {
-            val firstIndex = rowId * columns
-
-            Row {
-                for (columnId in 0 until columns) {
-                    val index = firstIndex + columnId
-                    buttons.getOrNull(index)?.let {
-                        ActionCalculatorButton(type = it, onClick = onActionClick)
-                    }
-                }
-            }
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(count = columns),
+        contentPadding = PaddingValues(10.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier
+    ) {
+        items(buttons) {
+            ActionCalculatorButton(
+                modifier = Modifier,
+                type = it,
+                onClick = onActionClick
+            )
         }
     }
 }
@@ -119,7 +122,9 @@ private fun DigitButtonsGrid(
 internal fun PreviewButtonsGridVertical() {
     CalculatorTheme {
         Surface {
-            ButtonsGrid(onActionClick = {})
+            ButtonsGrid(modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(), onActionClick = {})
         }
     }
 }
@@ -129,7 +134,12 @@ internal fun PreviewButtonsGridVertical() {
 internal fun PreviewButtonsGridHorizontal() {
     CalculatorTheme {
         Surface {
-            ButtonsGrid(isVerticalOrientation = false, onActionClick = {})
+            ButtonsGrid(
+                modifier = Modifier
+                    .wrapContentSize(),
+                isVerticalOrientation = false,
+                onActionClick = {}
+            )
         }
     }
 }

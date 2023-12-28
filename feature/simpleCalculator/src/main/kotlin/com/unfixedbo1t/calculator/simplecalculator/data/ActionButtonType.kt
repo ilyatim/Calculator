@@ -15,7 +15,7 @@ internal enum class ActionButtonType(
     Minus(IconRes(R.drawable.minus_svgrepo_com), ActionButtonState.Minus),
     Calculate(IconRes(R.drawable.equal_svgrepo_com), ActionButtonState.Calculate),
     Divide(IconRes(R.drawable.divide_svgrepo_com), ActionButtonState.Divide),
-    Brackets(IconRes(R.drawable.divide_svgrepo_com), ActionButtonState.Brackets),
+    Brackets(IconRes(R.drawable.brackets_round_svgrepo_com), ActionButtonState.Brackets),
     Backspace(IconRes(R.drawable.baseline_backspace_24), ActionButtonState.Backspace),
     Clear(IconString("AC"), ActionButtonState.Clear),
     Point(IconString("."), ActionButtonState.Point),

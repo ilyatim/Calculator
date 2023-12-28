@@ -41,4 +41,5 @@ android.sourceSets.all {
 
 dependencies {
     implementation(project(":uikit"))
+    implementation(project(":feature:simpleCalculator"))
 }

@@ -1,22 +1,23 @@
 package com.unfixedbo1t.calculator.uikit.components
 
-import android.content.res.Configuration
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.unfixedbo1t.calculator.uikit.theme.CalculatorTheme
-import com.unfixedbo1t.calculator.uikit.theme.clearButtonColor
-import com.unfixedbo1t.calculator.uikit.theme.digitButtonColor
 
 @Composable
 fun DefaultCalculatorButton(
@@ -25,81 +26,35 @@ fun DefaultCalculatorButton(
     onClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
-    Button(
-        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
+    val interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    Box(
         modifier = modifier
-            .height(60.dp)
-            .width(60.dp),
-        onClick = onClick,
+            .surface(
+                shape = CircleShape,
+                backgroundColor = backgroundColor,
+                border = null,
+                shadowElevation = 0.dp
+            )
+            .clickable(
+                interactionSource = interactionSource,
+                indication = rememberRipple(),
+                enabled = true,
+                onClick = onClick
+            ),
+        contentAlignment = Alignment.Center,
     ) {
         content()
     }
 }
 
-@Composable
-fun DigitCalculatorButton(
-    modifier: Modifier = Modifier,
-    digit: Int,
+private fun Modifier.surface(
+    shape: Shape,
     backgroundColor: Color,
-    onClick: () -> Unit,
-) {
-    DefaultCalculatorButton(
-        modifier = modifier,
-        onClick = onClick,
-        backgroundColor = backgroundColor
-    ) {
-        Text(
-            modifier = Modifier,
-            textAlign = TextAlign.Center,
-            text = digit.toString(),
-            fontSize = 18.sp
-        )
-    }
-}
+    border: BorderStroke?,
+    shadowElevation: Dp
+) = this
+    .shadow(shadowElevation, shape, clip = false)
+    .then(if (border != null) Modifier.border(border, shape) else Modifier)
+    .background(color = backgroundColor, shape = shape)
+    .clip(shape)
 
-@Composable
-fun ClearCalculatorButton(
-    modifier: Modifier = Modifier,
-    backgroundColor: Color,
-    onClick: () -> Unit,
-) {
-    DefaultCalculatorButton(
-        modifier = modifier,
-        onClick = onClick,
-        backgroundColor = backgroundColor
-    ) {
-        Text(
-            modifier = Modifier,
-            textAlign = TextAlign.Center,
-            text = "AC",
-            fontSize = 18.sp,
-            maxLines = 1,
-            overflow = TextOverflow.Visible
-        )
-    }
-}
-
-@Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-private fun DefaultCalculatorButtonPreview() {
-    CalculatorTheme {
-        DigitCalculatorButton(
-            digit = 1,
-            backgroundColor = digitButtonColor,
-            onClick = {},
-        )
-    }
-}
-
-@Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-private fun ClearCalculatorButtonPreview() {
-    CalculatorTheme {
-        ClearCalculatorButton(
-            backgroundColor = clearButtonColor,
-            onClick = {},
-        )
-    }
-}
