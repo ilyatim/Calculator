@@ -47,7 +47,7 @@ fun DefaultCalculatorButton(
     }
 }
 
-private fun Modifier.surface(
+fun Modifier.surface(
     shape: Shape,
     backgroundColor: Color,
     border: BorderStroke?,

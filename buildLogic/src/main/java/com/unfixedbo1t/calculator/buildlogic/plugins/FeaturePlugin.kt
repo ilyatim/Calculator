@@ -28,6 +28,7 @@ class FeaturePlugin : Plugin<Project> {
                 implementation(libs.findLibrary("androidx.compose.lifecycle.runtime").get())
                 implementation(libs.findLibrary("koin.androidx.compose").get())
                 implementation(libs.findLibrary("orbit.mvi.core").get())
+                implementation(libs.findLibrary("orbit.mvi.viewModel").get())
                 implementation(project(":uikit"))
             }
 

@@ -33,6 +33,11 @@ class ApplicationPlugin : Plugin<Project> {
 
             dependencies {
                 implementation(libs.findLibrary("androidx.activity.compose").get())
+                implementation(libs.findLibrary("androidx.compose.lifecycle.runtime").get())
+                implementation(libs.findLibrary("koin.androidx.compose").get())
+                implementation(libs.findLibrary("orbit.mvi.core").get())
+                implementation(libs.findLibrary("orbit.mvi.viewModel").get())
+                implementation(project(":uikit"))
             }
             configurePrimaryComposeAndroid(
                 extensions.getByType<ApplicationExtension>(),

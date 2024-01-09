@@ -18,8 +18,7 @@ internal val DarkColorScheme = darkColorScheme(
 internal val LightColorScheme = lightColorScheme(
     primary = Light.PrimaryGray,
     onPrimary = Light.ButtonOnContainer,
-    background = Light.PrimaryLightGray
-
+    background = Light.PrimaryLightGray,
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),

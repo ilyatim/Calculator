@@ -40,6 +40,8 @@ android.sourceSets.all {
 }
 
 dependencies {
-    implementation(project(":uikit"))
     implementation(project(":feature:simpleCalculator"))
+    implementation(libs.androidx.material3.window.size)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.androidx.compose.constraintLayout)
 }
